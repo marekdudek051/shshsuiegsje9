@@ -1,6 +1,7 @@
 import socket
 import threading
 import subprocess
+import sys
 
 PORT = 9999
 
@@ -30,7 +31,10 @@ def run_command(cmd):
         print(f"[ERROR podczas wykonania komendy] {e}")
 
 def main():
-    server_ip = input("IP: ").strip()
+    if len(sys.argv) >= 2:
+        server_ip = sys.argv[1]
+    else:
+        server_ip = input("IP: ").strip()
 
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
